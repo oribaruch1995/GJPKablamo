@@ -18,9 +18,10 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     [SerializeField] private float sprintMult = 1.2f;
     [SerializeField] private float baseMoveSpeed;
     public Transform ShootPosition;
+    public GameObject Bullets;
     private ThirdPersonController thirdPersonController = null;
 
-    public bool isAlive { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public bool isAlive { get => isAlive; private set { isAlive = value; } }
 
     private void Awake()
     {
@@ -30,8 +31,17 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     private void Start()
     {
         PlayerDefinitions();
+        Blackboard.EventManager.PlayerHit += OnHit;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Damage")) return;
+        if(TryGetComponent<DamageDealer>(out DamageDealer damageDealer))
+        {
+            OnHit(damageDealer.Damage);
+        }       
+    }
     private void PlayerDefinitions()
     {
         if(thirdPersonController is null)
@@ -68,18 +78,22 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
                 break;
         }
     }
+
     public void Shoot()
     {
-
+        //TODO: shooting
     }
 
     public void OnDeath()
     {
+        Blackboard.EventManager.PlayerHit -= OnHit;
         isAlive = false;
+        //TODO: death logic
     }
     
     public void OnHit(int damage)
     {
+        //TODO: Implement getting hit timer?
         playerCharacter.CurHitPoints += damage;
         if ((playerCharacter.CurHitPoints <= 0) && (isAlive)) OnDeath();
     }
