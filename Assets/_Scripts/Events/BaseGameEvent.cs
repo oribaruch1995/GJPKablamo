@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
-
 public abstract class BaseGameEvent<TData> : ScriptableObject
 {
     protected List<IEventListener<TData>> listeners = new List<IEventListener<TData>>();
