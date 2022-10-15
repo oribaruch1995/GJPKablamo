@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Interface for all damage getting types
+/// </summary>
 public interface IHittable 
 {
-    public bool isAlive { get; set; }
 
     /// <summary>
     /// Logic for hp reaches 0
