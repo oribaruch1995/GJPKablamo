@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271146537949155479}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0.52, y: 0.203, z: -0.315}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 0.016, y: 0.153, z: 0.664}
   m_LocalScale: {x: 0.1, y: 0.3, z: 0.1}
   m_Children:
   - {fileID: 6413001754205554566}
   m_Father: {fileID: 4718375648696504074}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!33 &2675350757338268813
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8aa40b592cef5a74383c5e85d27c0742, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 4718375648696504073}
   - component: {fileID: 4718375648696504086}
   - component: {fileID: 4718375648696504087}
-  - component: {fileID: 4718375648696504077}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -157,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4718375648696504084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.02, y: 0.2, z: -4.07}
+  m_LocalPosition: {x: -3.02, y: 0.2, z: -4.122}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 1041159175941200538}
@@ -191,7 +190,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -261,20 +260,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07262dc41ba7bf049be2fc0af83ab766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Agent: {fileID: 4718375648696504086}
-  SpawnTime: 1
+  Bullet: {fileID: 5008235394191826346, guid: 9933d97cd6d1c0e41a11efce6916acf5, type: 3}
+  Projectiles: {fileID: 0}
   SpawnTimeRangeStart: 0.4
   SpawnTimeeRangeEnd: 1.2
-  _shootingTimer: 0
---- !u!114 &4718375648696504077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4718375648696504084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70c48f843f855f845b8649754f3668db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _shootingTimer: 3
+  timeBetweenAttacks: 3
+  sightRange: 7
+  attackRange: 4
