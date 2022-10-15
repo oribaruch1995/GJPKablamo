@@ -2,18 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
     public GameStage currentStage;
     public List<Ceiling> ceilings;
+
+    [SerializeField] private StageEvent _stageEnter;
+
     private void Awake()
     {
-        Blackboard.GameManager = this;
+        Blackboard.StageManager = this;
         currentStage = GameStage.X;
     }
     private void Start()
     {
-        currentStage = GameStage.A;
+        ChangeStage(GameStage.A);
+    }
+
+    private void OnEnable()
+    {
+        _stageEnter.RegisterEvent(ChangeStage);
+    }
+
+    private void OnDisable()
+    {
+        _stageEnter.UnregisterEvent(ChangeStage);
     }
     /// <summary>
     /// Change the stages visibility based on player position 
@@ -21,6 +34,11 @@ public class GameManager : MonoBehaviour
     /// <param name="stage"></param>
     public void ChangeStage(GameStage stage)
     {
+        if (currentStage == stage)
+        {
+            return;
+        }
+
         currentStage = stage;
         foreach(Ceiling c in ceilings)
         {

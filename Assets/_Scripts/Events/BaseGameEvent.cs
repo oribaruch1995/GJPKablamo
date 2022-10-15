@@ -1,19 +1,16 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
 public abstract class BaseGameEvent<TData> : ScriptableObject
 {
-    protected List<IEventListener<TData>> listeners = new List<IEventListener<TData>>();
-
+    protected event Action<TData> _event;
     public virtual void Raise(TData data)
     {
-        for (int i = listeners.Count - 1; i >= 0; i--)
-            listeners[i].OnEventRaised(data);
+        _event?.Invoke(data);
     }
 
-    public virtual void RegisterListener(IEventListener<TData> listener)
-    { listeners.Add(listener); }
+    public virtual void RegisterEvent(Action<TData> response) => _event += response;
 
-    public virtual void UnregisterListener(IEventListener<TData> listener)
-    { listeners.Remove(listener); }
+    public virtual void UnregisterEvent(Action<TData> response) => _event -= response;
 }
