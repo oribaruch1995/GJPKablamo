@@ -8,7 +8,12 @@ public class PlayerShotControl : MonoBehaviour
     public float FireRate;
     [SerializeField] private GameObject _playerBullet;
     [SerializeField] private float _nextShotTimer;
+    private CharacterBehaviour _characterBehaviour;
 
+    private void OnEnable()
+    {
+        _characterBehaviour = GetComponent<CharacterBehaviour>();
+    }
     void Start()
     {
         _nextShotTimer = FireRate;
@@ -20,7 +25,9 @@ public class PlayerShotControl : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame && _nextShotTimer <= 0)
         {
             Debug.Log("Fire");
-            Instantiate(_playerBullet, GameObject.Find("FirePoint").transform.position, Quaternion.identity, GameObject.Find("Bullets").transform);
+            var bullet = Instantiate(_playerBullet, GameObject.Find("FirePoint").transform.position, Quaternion.identity, GameObject.Find("Projectiles").transform)
+                                .GetComponent<PlayerBullet>();
+            bullet.Damage = _characterBehaviour.weapon.bulletType.bulletDamage;
             _nextShotTimer = FireRate;
 
         }

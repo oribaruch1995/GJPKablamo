@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 1294654880838550561}
   - component: {fileID: -7627244646370242062}
   - component: {fileID: -3011681928953962405}
-  m_Layer: 0
+  - component: {fileID: 3731370620860220080}
+  m_Layer: 8
   m_Name: PlayerBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 1294654880838550562}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.71, y: 1.518, z: -8.986}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -125,4 +126,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac53baef73dff994183cd8989cc5c1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damage: 0
   BulletSpeed: 785
+--- !u!114 &3731370620860220080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294654880838550562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f47e0599e12e6df468020c4b56342290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layers:
+  - serializedVersion: 2
+    m_Bits: 128
+  Damage: 1

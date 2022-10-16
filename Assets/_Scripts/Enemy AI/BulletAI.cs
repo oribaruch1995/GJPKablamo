@@ -11,22 +11,23 @@ public class BulletAI : MonoBehaviour
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        TargetPlayer = GameObject.Find("Player");
-        _moveDirection = (TargetPlayer.transform.position - transform.position).normalized * Speed;
-        _rb.velocity = new Vector3(_moveDirection.x, 0, _moveDirection.z);
+        TargetPlayer = GameObject.FindGameObjectWithTag("Player");
+        _moveDirection = (TargetPlayer.transform.position - transform.position).normalized;
+        _rb.velocity = new Vector3(_moveDirection.x, 0, _moveDirection.z) * Speed;
         Destroy(gameObject, 4f);
     }
-    private void OnTriggerEnter(Collider other)
+/*    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name.Equals("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            
         }
-        else if (other.gameObject.tag.Equals("Enemy"))
+        else if (other.gameObject.CompareTag("Enemy"))
         {
             Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), other);
+            return;
         }
-        else
-            Destroy(gameObject);
-    }
+
+        Destroy(gameObject);
+    }*/
 }

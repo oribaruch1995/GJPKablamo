@@ -20,6 +20,11 @@ public class ScoreManager : MonoBehaviour
     public Func<int, bool> BuyMe;
     public int CurrentPoints;
 
+    private void Awake()
+    {
+        Blackboard.ScoreManager = this;
+    }
+
     private void OnEnable()
     {
         BuyEvent.AddListener(BuySomething);
@@ -53,5 +58,12 @@ public class ScoreManager : MonoBehaviour
             tryPoints = 0;
             return true;
         }
+    }
+
+    public void AddPoints(int points)
+    {
+        CurrentPoints += points;
+        //fire event
+        //TODO: Update Ui
     }
 }

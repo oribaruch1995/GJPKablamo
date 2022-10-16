@@ -11,7 +11,7 @@ public abstract class BaseCharacter
     /// Character max HP
     /// </summary>
     public int MaxHitPoints { get; set; }
-    public int CurHitPoints { get; set; }
+    public int CurrrentHp { get; set; }
     public bool isAlive { get; set; }
     /// <summary>
     /// Base speed holder

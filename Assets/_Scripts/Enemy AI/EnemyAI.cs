@@ -1,11 +1,13 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAI : MonoBehaviour,IHittable
 {
-
+    [SerializeField] private int _hp = 5;
+    [SerializeField] private int _pWorth = 10;
     [SerializeField] private GameObject Bullet;
     [SerializeField] private float SpawnTimeRangeStart;
     [SerializeField] private float SpawnTimeeRangeEnd;
@@ -36,9 +38,15 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Player == null)
+        {
+            OnDeath();
+            return;
+        }
         Agent.transform.LookAt(Player.transform);
         Agent.SetDestination(Player.transform.position);
         playerInAttackRange = Vector3.Distance(Agent.transform.position, Player.transform.position) < attackRange;
+        transform.rotation = new Quaternion(0, Quaternion.identity.y, 0,0);
         //Check for sight and attack range
         //Check for sight and attack range
         /*        playerInSightRange = Vector3.Distance(Agent.transform.position, Player.transform.position) < sightRange;
@@ -51,7 +59,6 @@ public class EnemyAI : MonoBehaviour
                     Agent.SetDestination(Player.transform.position);
                 }*/
 
-        Debug.Log(playerInAttackRange.ToString());
         if (playerInAttackRange)
         {
             if (_shootingTimer <= 0)
@@ -63,12 +70,8 @@ public class EnemyAI : MonoBehaviour
                 _shootingTimer -= Time.deltaTime;
             }
         }
-        if (Vector3.Distance(Agent.transform.position, Player.transform.position) < 0.5f) // change to if enemy hitpoints is lower than 0
-        {
-            Destroy(Agent.gameObject);
-        }
-
     }
+
     public void Shot()
     {
         Agent.SetDestination(transform.position);
@@ -81,7 +84,6 @@ public class EnemyAI : MonoBehaviour
     {
         alreadyAttacked = true;
         yield return new WaitForSeconds(Random.Range(0.3f, 0.6f));
-        Debug.Log("Fire Gun");
         Instantiate(Bullet, transform.GetChild(0).GetChild(0).position, Quaternion.identity, Projectiles.transform);
         yield return new WaitForSeconds(Random.Range(0.6f, 1f));
         alreadyAttacked = false;
@@ -95,4 +97,18 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, sightRange);*/
     }
 
+    public void OnDeath()
+    {
+        Blackboard.ScoreManager.AddPoints(_pWorth);
+        Destroy(gameObject);
+    }
+
+    public void OnHit(int damage)
+    {
+        _hp -= damage;
+        if(_hp <= 0)
+        {
+            OnDeath();
+        }
+    }
 }

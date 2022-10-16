@@ -19,7 +19,7 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     /// </summary>
     [SerializeField] private float sprintMult = 1.2f;
     [SerializeField] private float baseMoveSpeed;
-    [SerializeField] private Weapon weapon;
+    public Weapon weapon;
     [SerializeField] private int bulletsRemaining;
     #endregion Definitions of Player
     public Transform ShootPosition;
@@ -27,7 +27,7 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     private float fireRate;
     private ThirdPersonController thirdPersonController = null;
 
-    public bool isAlive { get => isAlive; private set { isAlive = value; } }
+    public bool isAlive = true;
 
     private void Awake()
     {
@@ -39,15 +39,15 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
         PlayerDefinitions();
         Blackboard.EventManager.PlayerHit += OnHit;
     }
-
+/*
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("Damage")) return;
-        if(TryGetComponent<DamageDealer>(out DamageDealer damageDealer))
+        if(TryGetComponent<BulletDamageDealer>(out BulletDamageDealer damageDealer))
         {
             OnHit(damageDealer.Damage);
         }       
-    }
+    }*/
     private void PlayerDefinitions()
     {
         if(thirdPersonController is null)
@@ -66,7 +66,7 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     {
         if (TryGetComponent<ThirdPersonController>(out ThirdPersonController tpc))
             thirdPersonController = tpc;
-        playerCharacter = new PlayerCharacter(MaxHP,MaxHP,true,baseMoveSpeed,1,weapon);
+        playerCharacter = new PlayerCharacter (MaxHP, MaxHP, true,baseMoveSpeed,1,weapon);
     }
 
     /// <summary>
@@ -107,14 +107,14 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     /// <param name="value"></param>
     public void Heal(int value)
     {
-        if (playerCharacter.CurHitPoints <= playerCharacter.MaxHitPoints)
+        if (playerCharacter.CurrrentHp <= playerCharacter.MaxHitPoints)
         {
-            if ((playerCharacter.CurHitPoints + value) > playerCharacter.MaxHitPoints)
-                playerCharacter.CurHitPoints = playerCharacter.MaxHitPoints;
+            if ((playerCharacter.CurrrentHp + value) > playerCharacter.MaxHitPoints)
+                playerCharacter.CurrrentHp = playerCharacter.MaxHitPoints;
             else
-                playerCharacter.CurHitPoints += value;
+                playerCharacter.CurrrentHp += value;
         }
-        else playerCharacter.CurHitPoints = playerCharacter.MaxHitPoints;
+        else playerCharacter.CurrrentHp = playerCharacter.MaxHitPoints;
     }
 
     public void AddAmmo(int value)
@@ -138,13 +138,17 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     {
         Blackboard.EventManager.PlayerHit -= OnHit;
         isAlive = false;
-        //TODO: death logic
+        Destroy(gameObject);
     }
     
     public void OnHit(int damage)
     {
         //TODO: Implement getting hit timer?
-        playerCharacter.CurHitPoints += damage;
-        if ((playerCharacter.CurHitPoints <= 0) && (isAlive)) OnDeath();
+        playerCharacter.CurrrentHp -= damage;
+        Debug.Log("player hp: " + playerCharacter.CurrrentHp);
+        if (playerCharacter.CurrrentHp <= 0 && isAlive)
+        {
+            OnDeath();
+        }
     }
 }

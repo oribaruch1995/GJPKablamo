@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2675350757338268813}
   - component: {fileID: 5572450425055004889}
   - component: {fileID: 1362785022786086718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1271146537949155479}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6413001754205554566}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletExit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,10 +138,11 @@ GameObject:
   - component: {fileID: 4718375648696504074}
   - component: {fileID: 4718375648696504075}
   - component: {fileID: 4718375648696504072}
-  - component: {fileID: 4718375648696504073}
   - component: {fileID: 4718375648696504086}
   - component: {fileID: 4718375648696504087}
-  m_Layer: 0
+  - component: {fileID: -8169879471102681355}
+  - component: {fileID: 7380898056270460332}
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -157,7 +158,7 @@ Transform:
   m_GameObject: {fileID: 4718375648696504084}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.02, y: 0.2, z: -4.122}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.3, y: 1, z: 0.3}
   m_Children:
   - {fileID: 1041159175941200538}
   m_Father: {fileID: 0}
@@ -212,20 +213,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4718375648696504073
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4718375648696504084}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &4718375648696504086
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -239,8 +226,8 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_AngularSpeed: 60
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -260,9 +247,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07262dc41ba7bf049be2fc0af83ab766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hp: 5
+  _pWorth: 10
   Bullet: {fileID: 5008235394191826346, guid: 9933d97cd6d1c0e41a11efce6916acf5, type: 3}
   SpawnTimeRangeStart: 0.4
   SpawnTimeeRangeEnd: 1.2
   _shootingTimer: 3
   attackRange: 4
   enemySpeedRange: {x: 2, y: 3}
+--- !u!65 &-8169879471102681355
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718375648696504084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.99999994, y: 2, z: 0.99999994}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &7380898056270460332
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718375648696504084}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
