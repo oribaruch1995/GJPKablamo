@@ -37,6 +37,6 @@ public class EventManager : MonoBehaviour , IObserver<int>
     #endregion
     private void OnDestroy()
     {
-        unsubscriber.Dispose();
+        unsubscriber?.Dispose();
     }
 }

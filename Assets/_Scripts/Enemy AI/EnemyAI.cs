@@ -7,12 +7,13 @@ public class EnemyAI : MonoBehaviour
 {
 
     [SerializeField] private GameObject Bullet;
-    [SerializeField] private GameObject Projectiles;
     [SerializeField] private float SpawnTimeRangeStart;
     [SerializeField] private float SpawnTimeeRangeEnd;
     [SerializeField] private float _shootingTimer;
-    [SerializeField] private float sightRange;
+    //[SerializeField] private float sightRange;
     [SerializeField] private float attackRange;
+    [SerializeField] private Vector2 enemySpeedRange;
+    private GameObject Projectiles;
     private NavMeshAgent Agent;
     private GameObject Player;
     private bool alreadyAttacked;
@@ -26,6 +27,7 @@ public class EnemyAI : MonoBehaviour
         Player = GameObject.FindGameObjectsWithTag("Player")[0];
         Projectiles = GameObject.Find("Projectiles");
         Agent = GetComponent<NavMeshAgent>();
+        Agent.speed = Random.Range(enemySpeedRange.x, enemySpeedRange.y);
         _shootingTimer = Random.Range(SpawnTimeRangeStart, SpawnTimeeRangeEnd);
 
 
@@ -35,18 +37,19 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         Agent.transform.LookAt(Player.transform);
-
-        //Check for sight and attack range
-        //Check for sight and attack range
-        playerInSightRange = Vector3.Distance(Agent.transform.position, Player.transform.position) < sightRange;
+        Agent.SetDestination(Player.transform.position);
         playerInAttackRange = Vector3.Distance(Agent.transform.position, Player.transform.position) < attackRange;
+        //Check for sight and attack range
+        //Check for sight and attack range
+        /*        playerInSightRange = Vector3.Distance(Agent.transform.position, Player.transform.position) < sightRange;
+                playerInAttackRange = Vector3.Distance(Agent.transform.position, Player.transform.position) < attackRange;
 
-        Debug.Log(playerInSightRange.ToString());
+                Debug.Log(playerInSightRange.ToString());
 
-        if (playerInSightRange)
-        {
-            Agent.SetDestination(Player.transform.position);
-        }
+                if (playerInSightRange)
+                {
+                    Agent.SetDestination(Player.transform.position);
+                }*/
 
         Debug.Log(playerInAttackRange.ToString());
         if (playerInAttackRange)
@@ -88,8 +91,8 @@ public class EnemyAI : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+/*        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);*/
     }
 
 }

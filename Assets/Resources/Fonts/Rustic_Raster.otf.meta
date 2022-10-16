@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: fa02a0ff440d1304eaa4bb2e0086b4e6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Rustic Raster
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 088f394790f25c64388c833f7c623d75, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

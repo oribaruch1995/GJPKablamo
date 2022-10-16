@@ -7,6 +7,7 @@ public class Weapon : ScriptableObject
 {
     public string ID;
     public Bullet bulletType;
+    public int ClipSize;
     /// <summary>
     /// Angle deviation from gun nozzle forward (0 for straight) (30 for cone with 15deg to left and 15 to righe cone)
     /// </summary>
