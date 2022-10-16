@@ -261,10 +261,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Bullet: {fileID: 5008235394191826346, guid: 9933d97cd6d1c0e41a11efce6916acf5, type: 3}
-  Projectiles: {fileID: 0}
   SpawnTimeRangeStart: 0.4
   SpawnTimeeRangeEnd: 1.2
   _shootingTimer: 3
-  timeBetweenAttacks: 3
   sightRange: 7
   attackRange: 4
+  enemySpeedRange: {x: 2, y: 3}
