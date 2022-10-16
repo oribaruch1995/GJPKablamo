@@ -5945,6 +5945,7 @@ GameObject:
   - component: {fileID: 1290888488}
   - component: {fileID: 1290888487}
   - component: {fileID: 1290888489}
+  - component: {fileID: 1290888490}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -5995,6 +5996,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b5264b0be919c4382b49b5c1181149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1290888490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290888486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c12d34bf6af7af4eb6c6ed46abb9e64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BuyEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  CurrentPoints: 0
 --- !u!1 &1305312725
 GameObject:
   m_ObjectHideFlags: 0

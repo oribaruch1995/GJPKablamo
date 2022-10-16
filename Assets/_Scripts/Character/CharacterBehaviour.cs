@@ -99,6 +99,22 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
         }
     }
 
+    /// <summary>
+    /// Used for healing the player (Buff or Vending machine)
+    /// </summary>
+    /// <param name="value"></param>
+    public void Heal(int value)
+    {
+        if (playerCharacter.CurHitPoints <= playerCharacter.MaxHitPoints)
+        {
+            if ((playerCharacter.CurHitPoints + value) > playerCharacter.MaxHitPoints)
+                playerCharacter.CurHitPoints = playerCharacter.MaxHitPoints;
+            else
+                playerCharacter.CurHitPoints += value;
+        }
+        else playerCharacter.CurHitPoints = playerCharacter.MaxHitPoints;
+    }
+
     public void Shoot()
     {
         //TODO: shooting

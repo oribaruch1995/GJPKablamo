@@ -1,14 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 public class ScoreManager : MonoBehaviour
 {
-    //public Action<bool>
+    /// <summary>
+    /// Public Event to try buying stuff
+    /// </summary>
+    public UnityEvent<int> BuyEvent;
+    /// <summary>
+    /// Public Event notify if the purchase was successful or not
+    /// </summary>
+    public Action<bool> BuyStatus;
+    public Func<int, bool> BuyMe;
     public int CurrentPoints;
-    private int tryPoints;
 
+    private void OnEnable()
+    {
+        BuyEvent.AddListener(BuySomething);
+        BuyMe = TryBuy;
+    }
+    private void OnDisable()
+    {
+        BuyEvent.RemoveListener(BuySomething);
+    }
+
+    public void BuySomething(int points)
+    {
+        BuyStatus.Invoke(TryBuy(points));
+    }
+    /// <summary>
+    /// Try to buy item with points
+    /// </summary>
+    /// <param name="buyPoints"></param>
     public bool TryBuy(int buyPoints)
     {
         if ((buyPoints < 0) || buyPoints > CurrentPoints)
@@ -19,8 +45,9 @@ public class ScoreManager : MonoBehaviour
         }
         else
         {
-            tryPoints = CurrentPoints - buyPoints;
-
+            int tryPoints = CurrentPoints - buyPoints;
+            CurrentPoints = tryPoints;
+            tryPoints = 0;
             return true;
         }
     }
