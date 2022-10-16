@@ -419,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &2003947452
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1914,6 +1914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprintMult: 1.2
   baseMoveSpeed: 0
+  weapon: {fileID: 0}
   ShootPosition: {fileID: 0}
   Bullets: {fileID: 0}
 --- !u!1 &4523139366903031509

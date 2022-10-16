@@ -17,8 +17,10 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     /// </summary>
     [SerializeField] private float sprintMult = 1.2f;
     [SerializeField] private float baseMoveSpeed;
+    [SerializeField] private Weapon weapon;
     public Transform ShootPosition;
     public GameObject Bullets;
+    private float fireRate;
     private ThirdPersonController thirdPersonController = null;
 
     public bool isAlive { get => isAlive; private set { isAlive = value; } }
@@ -52,6 +54,7 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
         baseMoveSpeed = playerCharacter.MovementSpeed;
         thirdPersonController.MoveSpeed = playerCharacter.MovementSpeed;
         thirdPersonController.SprintSpeed = playerCharacter.MovementSpeed * sprintMult;
+        fireRate = playerCharacter.Weapon.FireRate;
     }
 
     private void AwakeAssign()
@@ -75,6 +78,19 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
             default:
                 thirdPersonController.MoveSpeed += value;
                 thirdPersonController.SprintSpeed = thirdPersonController.MoveSpeed * sprintMult;
+                break;
+        }
+    }
+
+    public void FireRateChange(float value)
+    {
+        switch (value)
+        {
+            case 0:
+                playerCharacter.Weapon.FireRate = fireRate;
+                break;
+            default:
+                playerCharacter.Weapon.FireRate += value;
                 break;
         }
     }
