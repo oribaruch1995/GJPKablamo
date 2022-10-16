@@ -14,6 +14,9 @@ public class ScoreManager : MonoBehaviour
     /// Public Event notify if the purchase was successful or not
     /// </summary>
     public Action<bool> BuyStatus;
+    /// <summary>
+    /// Main Func to use for buying items and buffs
+    /// </summary>
     public Func<int, bool> BuyMe;
     public int CurrentPoints;
 
