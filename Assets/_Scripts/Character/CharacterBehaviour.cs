@@ -19,7 +19,7 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     /// </summary>
     [SerializeField] private float sprintMult = 1.2f;
     [SerializeField] private float baseMoveSpeed;
-    [SerializeField] private Weapon weapon;
+    public Weapon weapon;
     public int bulletsRemaining;
     #endregion Definitions of Player
     public Transform ShootPosition;
