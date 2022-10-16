@@ -5944,6 +5944,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1290888488}
   - component: {fileID: 1290888487}
+  - component: {fileID: 1290888489}
   m_Layer: 0
   m_Name: StageManager
   m_TagString: Untagged
@@ -5982,6 +5983,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1290888489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290888486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22b5264b0be919c4382b49b5c1181149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1305312725
 GameObject:
   m_ObjectHideFlags: 0
@@ -9172,10 +9185,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15bb86169dcf7024a9d8805586772bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxHP: 5
   sprintMult: 1.2
-  baseMoveSpeed: 0
-  ShootPosition: {fileID: 0}
-  Bullets: {fileID: 0}
+  baseMoveSpeed: 10
+  weapon: {fileID: 11400000, guid: 5a32cb720591f1c4eaf3efd9e3897b6c, type: 2}
+  ShootPosition: {fileID: 2045763056}
+  Bullets: {fileID: 710885321}
 --- !u!114 &2045763050
 MonoBehaviour:
   m_ObjectHideFlags: 0

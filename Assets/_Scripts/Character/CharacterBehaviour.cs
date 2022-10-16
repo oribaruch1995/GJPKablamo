@@ -11,13 +11,16 @@ using System;
 /// </summary>
 public class CharacterBehaviour : MonoBehaviour , IHittable
 {
-    [SerializeField] PlayerCharacter playerCharacter;
+    #region Definitions of Player
+    [SerializeField] private int MaxHP;
+    private PlayerCharacter playerCharacter;
     /// <summary>
     /// Sprint speed nultiplier
     /// </summary>
     [SerializeField] private float sprintMult = 1.2f;
     [SerializeField] private float baseMoveSpeed;
     [SerializeField] private Weapon weapon;
+    #endregion Definitions of Player
     public Transform ShootPosition;
     public GameObject Bullets;
     private float fireRate;
@@ -61,6 +64,7 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     {
         if (TryGetComponent<ThirdPersonController>(out ThirdPersonController tpc))
             thirdPersonController = tpc;
+        playerCharacter = new PlayerCharacter(MaxHP,MaxHP,true,baseMoveSpeed,1,weapon);
     }
 
     /// <summary>
