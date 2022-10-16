@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 public abstract class BaseGameEvent<TData> : ScriptableObject
 {

@@ -9,6 +9,8 @@ public class PlayerShotControl : MonoBehaviour
     [SerializeField] private GameObject _playerBullet;
     [SerializeField] private float _nextShotTimer;
     private CharacterBehaviour _characterBehaviour;
+    public AudioSource audiosource;
+    public AudioClip shotSfx;
 
     private void OnEnable()
     {
@@ -27,6 +29,7 @@ public class PlayerShotControl : MonoBehaviour
             Debug.Log("Fire");
             var bullet = Instantiate(_playerBullet, GameObject.Find("FirePoint").transform.position, Quaternion.identity, GameObject.Find("Projectiles").transform)
                                 .GetComponent<PlayerBullet>();
+            audiosource.PlayOneShot(shotSfx);
             bullet.Damage = _characterBehaviour.weapon.bulletType.bulletDamage;
             _nextShotTimer = FireRate;
 

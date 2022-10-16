@@ -13,19 +13,15 @@ public class PlayerBullet : MonoBehaviour
     {
         _bulletDirection = GameObject.Find("Gun").transform.up;
         _rigidbody = GetComponent<Rigidbody>();
-    }
+        _rigidbody.velocity = _bulletDirection * BulletSpeed * Time.fixedDeltaTime;
 
-    private void Update()
-    {
-        _rigidbody.velocity = _bulletDirection * BulletSpeed * Time.deltaTime;
     }
-
-/*    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.TryGetComponent<EnemyAI>(out var enemyAI))
+    /*    private void OnCollisionEnter(Collision collision)
         {
-            enemyAI.OnHit(Damage);
-        }
-        Destroy(gameObject);
-    }*/
+            if(collision.gameObject.TryGetComponent<EnemyAI>(out var enemyAI))
+            {
+                enemyAI.OnHit(Damage);
+            }
+            Destroy(gameObject);
+        }*/
 }

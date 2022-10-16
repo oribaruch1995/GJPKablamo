@@ -145,7 +145,6 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     {
         //TODO: Implement getting hit timer?
         playerCharacter.CurrrentHp -= damage;
-        Debug.Log("player hp: " + playerCharacter.CurrrentHp);
         if (playerCharacter.CurrrentHp <= 0 && isAlive)
         {
             OnDeath();

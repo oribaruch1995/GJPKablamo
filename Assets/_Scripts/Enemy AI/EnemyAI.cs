@@ -21,7 +21,9 @@ public class EnemyAI : MonoBehaviour,IHittable
     private bool alreadyAttacked;
     private bool playerInSightRange;
     private bool playerInAttackRange;
-
+    public AudioSource audiosource;
+    public AudioClip shotSfx;
+ 
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,7 @@ public class EnemyAI : MonoBehaviour,IHittable
         Agent.SetDestination(Player.transform.position);
         playerInAttackRange = Vector3.Distance(Agent.transform.position, Player.transform.position) < attackRange;
         transform.rotation = new Quaternion(0, Quaternion.identity.y, 0,0);
+
         //Check for sight and attack range
         //Check for sight and attack range
         /*        playerInSightRange = Vector3.Distance(Agent.transform.position, Player.transform.position) < sightRange;
@@ -85,6 +88,7 @@ public class EnemyAI : MonoBehaviour,IHittable
         alreadyAttacked = true;
         yield return new WaitForSeconds(Random.Range(0.3f, 0.6f));
         Instantiate(Bullet, transform.GetChild(0).GetChild(0).position, Quaternion.identity, Projectiles.transform);
+        audiosource.PlayOneShot(shotSfx);
         yield return new WaitForSeconds(Random.Range(0.6f, 1f));
         alreadyAttacked = false;
         _shootingTimer = Random.Range(SpawnTimeRangeStart, SpawnTimeeRangeEnd); // change it so it will be dynamic from inspector

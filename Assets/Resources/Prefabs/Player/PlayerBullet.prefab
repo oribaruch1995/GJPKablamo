@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 0
-  BulletSpeed: 785
+  BulletSpeed: 200
 --- !u!114 &3731370620860220080
 MonoBehaviour:
   m_ObjectHideFlags: 0
