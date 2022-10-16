@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     public float CurrentHealth;
     public float CurrentScore = 0;
     private float _maxHealth;
+    public GameObject followCamera;
     void Awake()
     {
         Blackboard.UIManager = this;
@@ -30,6 +31,7 @@ public class UIManager : MonoBehaviour
     {
         _maxHealth = Player.playerCharacter.MaxHitPoints;
         scoreManager = Blackboard.ScoreManager;
+        StartPlay();
     }
     void Update()
     {
@@ -43,10 +45,11 @@ public class UIManager : MonoBehaviour
         // change to camera above player
         StartScreenGO.SetActive(false);
         GameHUDGO.SetActive(true);
+        followCamera.SetActive(true);
     }
     public void HpBar()
     {
-        CurrentHealth = Player.playerCharacter.CurHitPoints; // change temp player to HP amount from character
+        CurrentHealth = Player.playerCharacter.CurrrentHp; // change temp player to HP amount from character
         HpBarSlider.fillAmount = CurrentHealth / _maxHealth;
     }
     public void Score()
