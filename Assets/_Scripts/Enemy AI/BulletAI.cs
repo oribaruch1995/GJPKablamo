@@ -20,8 +20,11 @@ public class BulletAI : MonoBehaviour
     {
         if (other.gameObject.name.Equals("Player"))
         {
-            Debug.Log("hit player");
             Destroy(gameObject);
+        }
+        else if (other.gameObject.tag.Equals("Enemy"))
+        {
+            Physics.IgnoreCollision(this.gameObject.GetComponent<Collider>(), other);
         }
         else
             Destroy(gameObject);

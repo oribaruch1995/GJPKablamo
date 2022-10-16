@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4718375648696504087}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,7 +220,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4718375648696504084}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -264,6 +264,5 @@ MonoBehaviour:
   SpawnTimeRangeStart: 0.4
   SpawnTimeeRangeEnd: 1.2
   _shootingTimer: 3
-  sightRange: 7
   attackRange: 4
   enemySpeedRange: {x: 2, y: 3}
