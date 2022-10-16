@@ -20,6 +20,7 @@ public class BulletAI : MonoBehaviour
     {
         if (other.gameObject.name.Equals("Player"))
         {
+            //ADD HIT PLAYER LOGIC
             Destroy(gameObject);
         }
         else if (other.gameObject.tag.Equals("Enemy"))
