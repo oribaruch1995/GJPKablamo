@@ -20,6 +20,7 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
     [SerializeField] private float sprintMult = 1.2f;
     [SerializeField] private float baseMoveSpeed;
     [SerializeField] private Weapon weapon;
+    [SerializeField] private int bulletsRemaining;
     #endregion Definitions of Player
     public Transform ShootPosition;
     public GameObject Bullets;
@@ -58,6 +59,7 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
         thirdPersonController.MoveSpeed = playerCharacter.MovementSpeed;
         thirdPersonController.SprintSpeed = playerCharacter.MovementSpeed * sprintMult;
         fireRate = playerCharacter.Weapon.FireRate;
+        bulletsRemaining = playerCharacter.Weapon.ClipSize;
     }
 
     private void AwakeAssign()
@@ -113,6 +115,18 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
                 playerCharacter.CurHitPoints += value;
         }
         else playerCharacter.CurHitPoints = playerCharacter.MaxHitPoints;
+    }
+
+    public void AddAmmo(int value)
+    {
+        if (bulletsRemaining <= playerCharacter.Weapon.ClipSize)
+        {
+            if ((bulletsRemaining + value) > playerCharacter.Weapon.ClipSize)
+                bulletsRemaining = playerCharacter.Weapon.ClipSize;
+            else
+                bulletsRemaining += value;
+        }
+        else bulletsRemaining = playerCharacter.Weapon.ClipSize;
     }
 
     public void Shoot()
