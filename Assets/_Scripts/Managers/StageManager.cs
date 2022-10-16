@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    public GameStage currentStage;
-    public List<Ceiling> ceilings;
+    public List<Stage> Stages = new List<Stage>();
 
+    private Stage _currentStage;
     [SerializeField] private StageEvent _stageEnter;
+
 
     private void Awake()
     {
         Blackboard.StageManager = this;
-        currentStage = GameStage.X;
     }
     private void Start()
     {
-        ChangeStage(GameStage.A);
+        _currentStage = Stages.FirstOrDefault(stage => stage.GameStage == GameStage.A);
+        _currentStage.EnterStage();
     }
 
     private void OnEnable()
@@ -31,20 +33,17 @@ public class StageManager : MonoBehaviour
     /// <summary>
     /// Change the stages visibility based on player position 
     /// </summary>
-    /// <param name="stage"></param>
-    public void ChangeStage(GameStage stage)
+    /// <param name="gameStage"></param>
+    public void ChangeStage(GameStage gameStage)
     {
-        if (currentStage == stage)
+        if (_currentStage.GameStage == gameStage)
         {
             return;
         }
 
-        currentStage = stage;
-        foreach(Ceiling c in ceilings)
-        {
-            c.TurnVisible(true);
-            if ((currentStage == c.gameStage)) c.TurnVisible(false);
-        }
+        _currentStage.ExitStage();
+        _currentStage = Stages.FirstOrDefault(x => x.GameStage == gameStage);
+        _currentStage.EnterStage();
     }
 
 }
