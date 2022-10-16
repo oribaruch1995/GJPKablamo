@@ -6,4 +6,5 @@ public static class Blackboard
 {
     public static GameManager GameManager;
     public static EventManager EventManager;
+    public static ScoreManager ScoreManager;
 }
