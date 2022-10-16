@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Ceiling : MonoBehaviour
 {
-    public GameStage gameStage;
-    public bool isVisible = true;
-    private GameObject ceiling;
-
-    private void Awake()
-    {
-        ceiling = this.gameObject;
-    }
-
+    public bool isVisible { get; private set; } = true;
+    [SerializeField] GameObject ceiling;
 
     public void TurnVisible(bool visible)
     {
