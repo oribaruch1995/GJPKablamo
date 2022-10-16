@@ -13,14 +13,14 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
 {
     #region Definitions of Player
     [SerializeField] private int MaxHP;
-    private PlayerCharacter playerCharacter;
+    public PlayerCharacter playerCharacter;
     /// <summary>
     /// Sprint speed nultiplier
     /// </summary>
     [SerializeField] private float sprintMult = 1.2f;
     [SerializeField] private float baseMoveSpeed;
     [SerializeField] private Weapon weapon;
-    [SerializeField] private int bulletsRemaining;
+    public int bulletsRemaining;
     #endregion Definitions of Player
     public Transform ShootPosition;
     public GameObject Bullets;
@@ -127,6 +127,10 @@ public class CharacterBehaviour : MonoBehaviour , IHittable
                 bulletsRemaining += value;
         }
         else bulletsRemaining = playerCharacter.Weapon.ClipSize;
+        if (value > 0)
+        {
+            Blackboard.UIManager.Reloaded();
+        }
     }
 
     public void Shoot()
