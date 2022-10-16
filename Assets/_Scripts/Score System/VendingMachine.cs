@@ -9,6 +9,8 @@ public class VendingMachine : MonoBehaviour
     private ScoreManager scoreManager;
     [SerializeField] private int HealthPrice;
     [SerializeField] private int AmmoPrice;
+    [SerializeField] private int SpeedPrice;
+    [SerializeField] private int FireRatePrice;
     private CharacterBehaviour currentCharacter;
 
     private void Awake()
@@ -21,6 +23,7 @@ public class VendingMachine : MonoBehaviour
         if(TryGetComponent<CharacterBehaviour>(out CharacterBehaviour cha))
         {
             currentCharacter = cha;
+            //TODO: Connect UI popup
         }
     }
     private void Start()
@@ -52,4 +55,23 @@ public class VendingMachine : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Method to Increase FireRate in the vending machine
+    /// </summary>
+    /// <param name="amount"></param>
+    public void BuyFireRate(float amount)
+    {
+        if (scoreManager.BuyMe(FireRatePrice))
+        {
+            currentCharacter?.FireRateChange(amount);
+        }
+    }
+
+    public void BuyMoveSpeed(float amount)
+    {
+        if (scoreManager.BuyMe(SpeedPrice))
+        {
+            currentCharacter?.SpeedChange(amount);
+        }
+    }
 }
