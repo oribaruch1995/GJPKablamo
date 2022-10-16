@@ -9202,6 +9202,7 @@ GameObject:
   - component: {fileID: 2045763050}
   - component: {fileID: 2045763049}
   - component: {fileID: 2045763057}
+  - component: {fileID: 2045763058}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -9225,6 +9226,7 @@ MonoBehaviour:
   sprintMult: 1.2
   baseMoveSpeed: 5
   weapon: {fileID: 11400000, guid: 5a32cb720591f1c4eaf3efd9e3897b6c, type: 2}
+  bulletsRemaining: 0
   ShootPosition: {fileID: 0}
   Bullets: {fileID: 0}
 --- !u!114 &2045763050
@@ -9342,7 +9344,7 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   analogMovement: 0
-  cursorLocked: 1
+  cursorLocked: 0
   cursorInputForLook: 0
 --- !u!114 &2045763052
 MonoBehaviour:
@@ -9475,6 +9477,23 @@ MonoBehaviour:
   FireRate: 0.5
   _playerBullet: {fileID: 1294654880838550562, guid: 28fdee68c0e10164db5045e48bd2dff8, type: 3}
   _nextShotTimer: 0
+--- !u!114 &2045763058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2045763048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee34cacefbb57e647b901bde797b519c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenPosition: {x: 0, y: 0, z: 0}
+  worldnPosition: {x: 0, y: 0, z: 0}
+  layerstoHit:
+    serializedVersion: 2
+    m_Bits: 63
 --- !u!1 &2049809913
 GameObject:
   m_ObjectHideFlags: 0
