@@ -10,6 +10,11 @@ public class DamageDealer : MonoBehaviour, IObservable<int>
     public int Damage;
     private List<IObserver<int>> observers;
 
+    public DamageDealer(int damage)
+    {
+        Damage = damage;
+    }
+
     private void OnEnable()
     {
         Blackboard.EventManager?.Subscribe(this);
